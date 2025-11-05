@@ -1,0 +1,52 @@
+# Environment variables and secrets
+.env
+.env.local
+.env.production
+*.env
+
+# Credentials
+credentials.json
+credentials/
+*.key
+*.pem
+
+# Virtual environment
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# UV lock file (optional - some keep this)
+uv.lock
+
+# Test files
+test_*.py
+*_test.py
+
+# Personal documents (add your CV and LinkedIn PDF here)
+*.pdf
+
+# Logs
+*.log
+logs/
