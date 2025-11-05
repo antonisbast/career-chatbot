@@ -8,6 +8,7 @@ import gradio as gr
 from datetime import datetime
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import base64
 
 
 load_dotenv(override=True)
@@ -23,16 +24,28 @@ def get_sheets_client():
     credentials_file = 'credentials.json'
     
     if os.path.exists(credentials_file):
+        print("✓ Using local credentials.json")
         creds = ServiceAccountCredentials.from_json_keyfile_name(
             credentials_file, 
             scope
         )
     else:
-        # For HuggingFace Spaces
+        print("✓ Using HuggingFace environment credentials")
         creds_json = os.environ.get("GOOGLE_SHEETS_CREDS")
+        
         if not creds_json:
-            raise ValueError("No credentials found!")
-        creds_dict = json.loads(creds_json)
+            raise ValueError("GOOGLE_SHEETS_CREDS not found in environment variables!")
+        
+        print(f"✓ Credentials JSON length: {len(creds_json)} characters")
+        
+        try:
+            creds_dict = json.loads(creds_json)
+            print(f"✓ Loaded credentials for: {creds_dict.get('client_email', 'unknown')}")
+            print(f"✓ Project: {creds_dict.get('project_id', 'unknown')}")
+        except json.JSONDecodeError as e:
+            print(f"❌ Failed to parse credentials JSON: {e}")
+            raise ValueError("Invalid JSON in GOOGLE_SHEETS_CREDS!")
+        
         creds = ServiceAccountCredentials.from_json_keyfile_dict(
             creds_dict, 
             scope
