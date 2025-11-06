@@ -1,121 +1,104 @@
-# 🤖 Professional Career Chatbot
+# 🤖 AI Career Chatbot - Antonis Bastoulis
 
-An AI-powered chatbot that represents your professional skills, experience, and career. Built with OpenAI's GPT API and Gradio.
+An AI-powered chatbot that represents my professional profile and answers questions about my career, skills, and experience.
 
-## 🌟 Features
+## 🌐 Try It Live
 
-- **Interactive Chat**: Ask questions about professional background, skills, and experience
-- **Unanswered Questions Tracking**: Automatically logs questions the bot couldn't answer
-- **Contact Form**: Allows interested parties to leave their contact information
-- **Professional Context**: Powered by CV and LinkedIn profile information
+**➡️ [Chat with my AI assistant](https://huggingface.co/spaces/antonisbast/career-chatbot) ⬅️**
 
-## 🚀 Live Demo
+## 💡 What It Does
 
-[Add your Hugging Face Spaces link here after deployment]
+This chatbot acts as my professional representative, trained on my LinkedIn profile and CV. It can answer questions about:
 
-## 🛠️ Setup
+- 💼 Work experience and career history
+- 🛠️ Technical skills and expertise in Naval Architecture, Marine Engineering, and AI/ML
+- 📁 Projects and achievements
+- 🎓 Education and certifications
+- 🎯 Professional interests and goals
 
-### Prerequisites
+### Smart Features
 
-- Python 3.9 or higher
-- OpenAI API key
+- **Professional Boundaries**: Automatically redirects inappropriate questions (personal life, salary, etc.)
+- **Contact Collection**: Records visitor contact details directly to Google Sheets
+- **Question Tracking**: Logs questions it couldn't answer for continuous improvement
+- **Natural Conversation**: Speaks in first person while being transparent about being an AI
 
-### Installation
+## 🛠️ Built With
 
-1. Clone the repository:
+- **AI Model**: OpenAI GPT-4o-mini
+- **UI Framework**: Gradio
+- **PDF Processing**: PyPDF (LinkedIn profile + CV)
+- **Data Storage**: Google Sheets API
+- **Deployment**: Hugging Face Spaces
+
+## 📋 How It Works
+
+1. Extracts information from PDF exports of my LinkedIn profile and CV
+2. Uses GPT-4o-mini with a custom system prompt to represent me professionally
+3. Employs function calling to record contacts and unanswered questions
+4. Maintains professional boundaries while being helpful and informative
+
+## 🔒 Privacy & Security
+
+- No conversation history is permanently stored
+- Contact information only used for professional follow-up
+- Clear boundaries on what information is shared
+- Secure API communication
+
+---
+
+## 👨‍💻 For Developers
+
+Want to create your own AI career chatbot? Here's what you need:
+
+### Quick Setup
+
+1. **Clone the repository**
 ```bash
-git clone https://github.com/YOUR_USERNAME/career-chatbot.git
+git clone https://github.com/antonisbast/career-chatbot.git
 cd career-chatbot
 ```
 
-2. Create a virtual environment:
+2. **Install dependencies**
 ```bash
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+pip install openai gradio pypdf python-dotenv gspread oauth2client
 ```
 
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+3. **Prepare your documents**
+- Export your LinkedIn profile as PDF
+- Have your CV ready as PDF
+- Create a brief summary text file
 
-4. Create a `.env` file based on `.env.example`:
-```bash
-cp .env.example .env
-```
+4. **Set up APIs**
+- Get an OpenAI API key
+- Set up Google Sheets API (for contact recording)
+- Configure environment variables
 
-5. Add your OpenAI API key to the `.env` file:
-```
-OPENAI_API_KEY=your_actual_api_key_here
-```
-
-6. Update the professional context in `app.py`:
-   - Open `app.py`
-   - Find the `load_professional_context()` function
-   - Replace the placeholder text with your actual CV and LinkedIn content
-
-### Running Locally
-
+5. **Run locally**
 ```bash
 python app.py
 ```
 
-The app will be available at `http://localhost:7860`
+### Key Files
+- `app.py` - Main application with Gradio UI
+- `me/linkedin.pdf` - LinkedIn profile export
+- `me/CV.pdf` - Resume/CV
+- `me/summary.txt` - Professional summary
 
-## 📦 Deployment
-
-### Deploying to Hugging Face Spaces
-
-1. Create a new Space on [Hugging Face](https://huggingface.co/spaces)
-2. Choose "Gradio" as the SDK
-3. Clone your Space repository and add your code
-4. Add your `OPENAI_API_KEY` in Space Settings > Variables and secrets
-5. Push your code:
-```bash
-git add .
-git commit -m "Initial commit"
-git push
-```
-
-### Deploying to GitHub
-
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/YOUR_USERNAME/career-chatbot.git
-git push -u origin main
-```
-
-**Important**: Never commit your `.env` file or any files containing API keys!
-
-## 📊 Data Files
-
-The application creates two JSON files to track:
-- `unanswered_questions.json`: Questions the bot couldn't answer
-- `contact_requests.json`: Contact information from interested users
-
-## 🔒 Security
-
-- API keys are stored in environment variables
-- Sensitive files are excluded via `.gitignore`
-- For production deployment, use Hugging Face Spaces secrets management
-
-## 🤝 Contributing
-
-This is a personal project, but feel free to fork and adapt it for your own use!
-
-## 📝 License
-
-MIT License - feel free to use this for your own professional chatbot!
-
-## 👤 Author
-
-[Your Name]
-- LinkedIn: [Your LinkedIn Profile]
-- Email: [Your Email]
-- Portfolio: [Your Website]
+### Customization
+The system prompt in the `Me` class controls the chatbot's behavior, boundaries, and personality. Modify it to fit your professional profile.
 
 ---
 
-*Built with ❤️ using OpenAI GPT and Gradio*
+## 📫 Connect With Me
+
+- 🔗 [LinkedIn](https://www.linkedin.com/in/antonisbast/)
+- 💻 [GitHub](https://github.com/antonisbast)
+- 📧 [Email](mailto:antonisbast@gmail.com)
+- 🌐 [Hugging Face](https://huggingface.co/antonisbast)
+
+---
+
+**⭐ If you found this project interesting, consider giving it a star!**
+
+*Last Updated: November 2025*

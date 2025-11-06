@@ -24,27 +24,20 @@ def get_sheets_client():
     credentials_file = 'credentials.json'
     
     if os.path.exists(credentials_file):
-        print("✓ Using local credentials.json")
         creds = ServiceAccountCredentials.from_json_keyfile_name(
             credentials_file, 
             scope
         )
     else:
-        print("✓ Using HuggingFace environment credentials")
         creds_json = os.environ.get("GOOGLE_SHEETS_CREDS")
         
         if not creds_json:
             raise ValueError("GOOGLE_SHEETS_CREDS not found in environment variables!")
         
-        print(f"✓ Credentials JSON length: {len(creds_json)} characters")
-        
         try:
             creds_dict = json.loads(creds_json)
-            print(f"✓ Loaded credentials for: {creds_dict.get('client_email', 'unknown')}")
-            print(f"✓ Project: {creds_dict.get('project_id', 'unknown')}")
         except json.JSONDecodeError as e:
-            print(f"❌ Failed to parse credentials JSON: {e}")
-            raise ValueError("Invalid JSON in GOOGLE_SHEETS_CREDS!")
+            raise ValueError(f"Invalid JSON in GOOGLE_SHEETS_CREDS: {e}")
         
         creds = ServiceAccountCredentials.from_json_keyfile_dict(
             creds_dict, 
@@ -253,22 +246,6 @@ if __name__ == "__main__":
         .header-subtitle {
             font-size: 1.2rem;
             opacity: 0.9;
-        }
-        .example-box {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-            border-left: 4px solid #667eea;
-        }
-        .example-box p {
-            margin: 0.5rem 0;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .example-box p:hover {
-            transform: translateX(5px);
-            color: #667eea;
         }
         footer {
             text-align: center;
